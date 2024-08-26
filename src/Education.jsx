@@ -1,11 +1,13 @@
+import "./Form.css"
+
 export default function Education(){
     return(
         <>
-            <h2>Education</h2>
 
             <form id="edu-form-section" className="form-section">
+                <h2>Education</h2>
 
-                <label htmlFor="school-name"> Institution: </label>
+                <label htmlFor="school-name"> Institution </label>
                 <input type="text" />
 
                 <label htmlFor="study-type"> Title of Study </label>

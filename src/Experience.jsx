@@ -1,8 +1,10 @@
+import "./Form.css"
+
 export default function Experience () {
     return (
         <>
-            <h2>Experience</h2>
             <form id="exp-form-section" className="form-section">
+                <h2>Experience</h2> 
                 
                 <label htmlFor="job-title"> Job Title </label>
                 <input type="text" />
