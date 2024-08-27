@@ -1,11 +1,13 @@
 
 import './App.css';
-import Inputs from './Input.jsx';
+import Input from './Input.jsx';
+import Output from './Output.jsx'
 
 function App() {
   return(
     <>
-      <Inputs />
+      <Input />
+      <Output />
     </>
   )
 }

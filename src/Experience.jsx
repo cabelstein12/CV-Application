@@ -14,7 +14,7 @@ export default function Experience () {
                 <input type="text" />
 
                 <label htmlFor="job-responsibilities"> Responsibilities </label>
-                <textarea type="text" rows="4" cols="50" />
+                <textarea type="text" rows="4" cols="30" />
 
                 <label htmlFor="job-start">Start Date</label>
                 <input type="date"/>
@@ -28,6 +28,7 @@ export default function Experience () {
                     }
                 }/>
 
+                <button>Add Another Experience</button>
             </form>
         </>
     )

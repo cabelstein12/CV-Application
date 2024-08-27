@@ -18,6 +18,8 @@ export default function Education(){
 
                 <label htmlFor="study-date-end"> End </label>
                 <input type="date" />
+            
+                <button>Add Another Institution</button>
 
             </form>
         </>
