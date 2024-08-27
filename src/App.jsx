@@ -1,15 +1,11 @@
 
 import './App.css';
-import Info from './Info.jsx';
-import Education from './Education.jsx';
-import Experience from './Experience.jsx';
+import Inputs from './Input.jsx';
 
 function App() {
   return(
     <>
-      <Info />
-      <Education />
-      <Experience />
+      <Inputs />
     </>
   )
 }
