@@ -8,24 +8,29 @@ import Experience from "./Experience.jsx";
 
 function App() {
   const [info, setInfo] = useState({first: "John", last: 'Doe', email: "jdoe@email.com", phone: "(123)123-1234"});
-  
-  function handleChange(prop){
+  const [institution, setInstitution] = useState({name: "University of Baltimore", discipline: 'Bachelor of Science in Molecular Biology', end: '2016-04'})
+
+  function handleChange(prop, state, obj){
     return function(e){
-      setInfo({
-        ...info,
-        [prop]: e.target.value
+      state({
+        ...obj,
+        [prop]: e.target.value,
       })
     }
   }
 
-  const handleChangeFirstName = handleChange('first');
-  const handleChangeLastName = handleChange('last');
-  const handleChangeEmail = handleChange('email');
-  const handleChangePhone = handleChange('phone');
+  const handleChangeFirstName = handleChange('first', setInfo, info);
+  const handleChangeLastName = handleChange('last', setInfo, info);
+  const handleChangeEmail = handleChange('email', setInfo, info);
+  const handleChangePhone = handleChange('phone', setInfo, info);
+
+  const handleChangeDiscipline = handleChange('discipline', setInstitution, institution);
+  const handleChangeInstitutionName = handleChange('name', setInstitution, institution);
+  const handleChangeInstitutionEnd = handleChange('end', setInstitution, institution)
   
   return (
   <>
-      <div className="input">
+      <div className="input content">
         <Info 
           info = {info}
           onChangeFirstName={handleChangeFirstName}
@@ -33,13 +38,24 @@ function App() {
           onChangeEmail={handleChangeEmail}
           onChangePhone={handleChangePhone}
         />
-        <Education />
+        <Education 
+          institution={institution}
+          onChangeInstitution={handleChangeInstitutionName}
+          onChangeDiscipline={handleChangeDiscipline}
+          onChangeInstitutionEnd={handleChangeInstitutionEnd}
+        />
         <Experience />
       </div>
     <div  className="output content">
       <div className="personalInfo">
-        <span>{info.first} {info.last}</span><br></br>
+        <h2>{info.first} {info.last}</h2>
         <span>{info.email} {info.phone}</span>
+      </div>
+      <hr></hr>
+      <div className="education">
+        <h3><u>Education</u></h3>
+        <div>{institution.discipline}</div>
+        <div><b>{institution.name}</b>: <i>{institution.end}</i></div>
 
       </div>
     </div>
