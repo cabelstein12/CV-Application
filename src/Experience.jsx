@@ -24,7 +24,6 @@ export default function Experience() {
 
         <label htmlFor="job-start">Start Date</label>
         <input type="date" />
-
         <label htmlFor="job-end">End Date</label>
         <input id="end-date-text" type="date" />
         <span> Present </span>
@@ -34,10 +33,10 @@ export default function Experience() {
           onClick={() => {
             const endDate = document.getElementById("end-date-text");
             !endDate.disabled
-              ? (endDate.disabled = true)
-              : (endDate.disabled = false);
+            ? (endDate.disabled = true)
+            : (endDate.disabled = false);
           }}
-        />
+          />
 
         <button type="submit">Add Another Experience</button>
       </form>
