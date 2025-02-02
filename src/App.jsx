@@ -54,8 +54,12 @@ function App() {
       <hr></hr>
       <div className="education">
         <h3><u>Education</u></h3>
-        <div>{institution.discipline}</div>
-        <div><b>{institution.name}</b>: <i>{institution.end}</i></div>
+        <ul>
+          <li>
+              <div>{institution.discipline}</div>
+              <div><b>{institution.name}</b>: <i>{institution.end}</i></div>
+          </li>
+        </ul>
 
       </div>
     </div>
