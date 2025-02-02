@@ -1,11 +1,12 @@
 import "./Form.css";
+import "./Card.css"
 
 export default function Experience() {
   return (
     <>
       <form
         id="exp-form-section"
-        className="form-section"
+        className="form-section content"
         onSubmit={(e) => {
           e.preventDefault();
         }}

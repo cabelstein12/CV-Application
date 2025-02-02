@@ -1,12 +1,11 @@
 import "./Form.css";
-import { useState } from "react";
 
 export default function Education() {
   return (
     <>
       <form
         id="edu-form-section"
-        className="form-section"
+        className="form-section content"
         onSubmit={(e) => {
           e.preventDefault();
         }}

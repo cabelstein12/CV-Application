@@ -1,47 +1,50 @@
-import "./App.css";
-import Input from "./Input.jsx";
-import Output from "./Output.jsx";
 import { useState } from "react";
+import "./App.css";
+import "./Card.css"
+
+import Education from "./Education.jsx";
+import Info from "./Info.jsx";
+import Experience from "./Experience.jsx";
 
 function App() {
-  const [personalInfo, setPersonalInfo] = useState({
-    firstName: "",
-    lastName: "",
-    email: "",
-    phone: "",
-  });
-  function updateFirstName(e) {
-    setPersonalInfo({
-      ...personalInfo,
-      firstName: e.target.value,
-    });
+  const [info, setInfo] = useState({first: "John", last: 'Doe', email: "jdoe@email.com", phone: "(123)123-1234"});
+  
+  function handleChange(prop){
+    return function(e){
+      setInfo({
+        ...info,
+        [prop]: e.target.value
+      })
+    }
   }
-  function updateLastName(e) {
-    setPersonalInfo({
-      ...personalInfo,
-      lastName: e.target.value,
-    });
-  }
-  function updateEmail(e) {
-    setPersonalInfo({
-      ...personalInfo,
-      email: e.target.value,
-    });
-  }
-  function updatePhone(e) {
-    setPersonalInfo({ ...personalInfo, phone: e.target.value });
-  }
+
+  const handleChangeFirstName = handleChange('first');
+  const handleChangeLastName = handleChange('last');
+  const handleChangeEmail = handleChange('email');
+  const handleChangePhone = handleChange('phone');
+  
   return (
-    <>
-      <Input
-        changeFirstName={updateFirstName}
-        changeLastName={updateLastName}
-        changeEmail={updateEmail}
-        changePhone={updatePhone}
-        personalInfo={personalInfo}
-      />
-      <Output personalInfo={personalInfo} />
-    </>
+  <>
+      <div className="input">
+        <Info 
+          info = {info}
+          onChangeFirstName={handleChangeFirstName}
+          onChangeLastName={handleChangeLastName}
+          onChangeEmail={handleChangeEmail}
+          onChangePhone={handleChangePhone}
+        />
+        <Education />
+        <Experience />
+      </div>
+    <div  className="output content">
+      <div className="personalInfo">
+        <span>{info.first} {info.last}</span><br></br>
+        <span>{info.email} {info.phone}</span>
+
+      </div>
+    </div>
+
+  </>
   );
 }
 
