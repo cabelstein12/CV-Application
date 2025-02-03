@@ -1,6 +1,6 @@
 import "./Form.css";
 let nextInstitutionId = 0;
-export default function Education({schoolName, institutions ,onInstitutionName, onAddInstitution, }) {
+export default function Education({name, institutions, discipline, date, onAddName, onAddInstitution, onAddDiscipline, onAddDate}) {
   
   return (
     <>
@@ -12,17 +12,19 @@ export default function Education({schoolName, institutions ,onInstitutionName, 
           e.preventDefault();
           onAddInstitution([
             ...institutions,
-            {id: nextInstitutionId++, name: schoolName}
+            {id: nextInstitutionId++, name: name, discipline: discipline, date: date}
           ]);
+          console.log(institutions)
         }}
       >
         <h2>Education</h2>
         <label htmlFor="school-name"> Institution </label>
-        <input type="text" id="name" value={schoolName} onChange={onInstitutionName}/>
-        {/* <label htmlFor="study-type"> Title of Study </label>
-        <input type="text" id="discipline" placeholder={''} value={info.discipline}  />
+        <input type="text" id="name" value={name} onChange={onAddName}/>
+        <label htmlFor="study-type"> Title of Study </label>
+        <input type="text" id="discipline" value={discipline} onChange={onAddDiscipline} />
+        
         <label htmlFor="study-date-end"> End </label>
-        <input type="month" id="endDate" /> */}
+        <input type="month" id="endDate" value={date} onChange={onAddDate}/> 
 
         <button type="submit">Add Another Institution</button>
       </form>

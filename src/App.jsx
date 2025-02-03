@@ -20,9 +20,6 @@ function App() {
   //   end: '2016-04', 
   //   id: null
   // }
-  const [institutions, setInstitutions] = useState([])
-  const [institutionName, setInstitutionName] = useState('')
-  
   
   function handleChange(state, obj, prop){
     return function(e){
@@ -38,14 +35,25 @@ function App() {
   const handleChangeEmail = handleChange(setInfo, info, 'email' );
   const handleChangePhone = handleChange(setInfo, info, 'phone');
   
+  const [institutions, setInstitutions] = useState([]);
+  const [institutionName, setInstitutionName] = useState('');
+  const [institutionDate, setInstitutionDate] = useState('');
+  const [institutionDiscipline, setInstitutionDiscipline] = useState('');
+
   function handleInstitutionName(e){
     setInstitutionName(e.target.value)
+  }
+  function handleInstitutionDiscipline(e){
+    setInstitutionDiscipline(e.target.value)
+  }
+  function handleInstitutionDate(e){
+    setInstitutionDate(e.target.value)
   }
 
   const educationItems = institutions.map(institution => 
     <li key={institution.id}>
       <div>{institution.discipline}</div>
-      <div><b>{institution.name}</b>: <i>{institution.end}</i></div>
+      <div><b>{institution.name}</b>: <i>{institution.date}</i></div>
     </li>
   );
   return (
@@ -59,10 +67,14 @@ function App() {
           onChangePhone={handleChangePhone}
         />
         <Education 
-          schoolName={institutionName}
-          onInstitutionName={handleInstitutionName}
-          onAddInstitution={setInstitutions}
+          name={institutionName}
           institutions={institutions}
+          date={institutionDate}
+          discipline={institutionDiscipline}
+          onAddName={handleInstitutionName}
+          onAddInstitution={setInstitutions}
+          onAddDiscipline={handleInstitutionDiscipline}
+          onAddDate={handleInstitutionDate}
         />
         <Experience />
       </div>
