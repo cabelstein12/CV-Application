@@ -16,7 +16,6 @@ export default function Info({
           id="first-name"
           value={info.first}
           onChange={onChangeFirstName}
-
         />
 
         <label htmlFor="last-name"> Last Name </label>
@@ -25,7 +24,6 @@ export default function Info({
           id="last-name"
           value={info.last}
           onChange={onChangeLastName}
-
         />
 
         <label htmlFor="email"> Email </label>

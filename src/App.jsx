@@ -7,10 +7,24 @@ import Info from "./Info.jsx";
 import Experience from "./Experience.jsx";
 
 function App() {
-  const [info, setInfo] = useState({first: "John", last: 'Doe', email: "jdoe@email.com", phone: "(123)123-1234"});
-  const [institution, setInstitution] = useState({name: "University of Baltimore", discipline: 'Bachelor of Science in Molecular Biology', end: '2016-04'})
-
-  function handleChange(prop, state, obj){
+  const [info, setInfo] = useState({
+    first: "John", 
+    last: 'Doe', 
+    email: "jdoe@email.com", 
+    phone: "(123)456-1234"
+  });
+  
+  // const defaultInstitution = {
+  //   name: "University of Baltimore", 
+  //   discipline: 'Bachelor of Science in Molecular Biology', 
+  //   end: '2016-04', 
+  //   id: null
+  // }
+  const [institutions, setInstitutions] = useState([])
+  const [institutionName, setInstitutionName] = useState('')
+  
+  
+  function handleChange(state, obj, prop){
     return function(e){
       state({
         ...obj,
@@ -19,30 +33,36 @@ function App() {
     }
   }
 
-  const handleChangeFirstName = handleChange('first', setInfo, info);
-  const handleChangeLastName = handleChange('last', setInfo, info);
-  const handleChangeEmail = handleChange('email', setInfo, info);
-  const handleChangePhone = handleChange('phone', setInfo, info);
-
-  const handleChangeDiscipline = handleChange('discipline', setInstitution, institution);
-  const handleChangeInstitutionName = handleChange('name', setInstitution, institution);
-  const handleChangeInstitutionEnd = handleChange('end', setInstitution, institution)
+  const handleChangeFirstName = handleChange(setInfo, info, 'first');
+  const handleChangeLastName = handleChange(setInfo, info, 'last');
+  const handleChangeEmail = handleChange(setInfo, info, 'email' );
+  const handleChangePhone = handleChange(setInfo, info, 'phone');
   
+  function handleInstitutionName(e){
+    setInstitutionName(e.target.value)
+  }
+
+  const educationItems = institutions.map(institution => 
+    <li key={institution.id}>
+      <div>{institution.discipline}</div>
+      <div><b>{institution.name}</b>: <i>{institution.end}</i></div>
+    </li>
+  );
   return (
   <>
       <div className="input content">
         <Info 
-          info = {info}
+          info={info}
           onChangeFirstName={handleChangeFirstName}
           onChangeLastName={handleChangeLastName}
           onChangeEmail={handleChangeEmail}
           onChangePhone={handleChangePhone}
         />
         <Education 
-          institution={institution}
-          onChangeInstitution={handleChangeInstitutionName}
-          onChangeDiscipline={handleChangeDiscipline}
-          onChangeInstitutionEnd={handleChangeInstitutionEnd}
+          schoolName={institutionName}
+          onInstitutionName={handleInstitutionName}
+          onAddInstitution={setInstitutions}
+          institutions={institutions}
         />
         <Experience />
       </div>
@@ -55,12 +75,12 @@ function App() {
       <div className="education">
         <h3><u>Education</u></h3>
         <ul>
-          <li>
+          {educationItems}
+          {/* <li>
               <div>{institution.discipline}</div>
               <div><b>{institution.name}</b>: <i>{institution.end}</i></div>
-          </li>
+          </li> */}
         </ul>
-
       </div>
     </div>
 
