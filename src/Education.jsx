@@ -1,6 +1,7 @@
 import "./Form.css";
 let nextInstitutionId = 0;
 export default function Education({name, institutions, discipline, date, onAddName, onAddInstitution, onAddDiscipline, onAddDate}) {
+  console.log(institutions)
   
   return (
     <>
@@ -10,21 +11,23 @@ export default function Education({name, institutions, discipline, date, onAddNa
         name='edu-form'
         onSubmit={(e) => {
           e.preventDefault();
+          if(institutions[0].id == null){
+            institutions=[];
+          }
           onAddInstitution([
             ...institutions,
             {id: nextInstitutionId++, name: name, discipline: discipline, date: date}
           ]);
-          console.log(institutions)
         }}
       >
         <h2>Education</h2>
         <label htmlFor="school-name"> Institution </label>
-        <input type="text" id="name" value={name} onChange={onAddName}/>
-        <label htmlFor="study-type"> Title of Study </label>
-        <input type="text" id="discipline" value={discipline} onChange={onAddDiscipline} />
+        <input type="text" id="name" value={name} onChange={onAddName} minLength={7} required/>
+        <label htmlFor="study-type"> Field of Study </label>
+        <input type="text" id="discipline" value={discipline} onChange={onAddDiscipline} minLength={7} required/>
         
-        <label htmlFor="study-date-end"> End </label>
-        <input type="month" id="endDate" value={date} onChange={onAddDate}/> 
+        <label htmlFor="study-date-end"> Completion </label>
+        <input type="month" id="endDate" value={date} onChange={onAddDate} required/> 
 
         <button type="submit">Add Another Institution</button>
       </form>

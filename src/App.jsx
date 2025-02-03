@@ -14,12 +14,12 @@ function App() {
     phone: "(123)456-1234"
   });
   
-  // const defaultInstitution = {
-  //   name: "University of Baltimore", 
-  //   discipline: 'Bachelor of Science in Molecular Biology', 
-  //   end: '2016-04', 
-  //   id: null
-  // }
+  const defaultInstitution = {
+    name: "University of Baltimore", 
+    discipline: 'Bachelor of Science in Molecular Biology', 
+    date: "2016-04", 
+    id: null
+  }
   
   function handleChange(state, obj, prop){
     return function(e){
@@ -35,7 +35,7 @@ function App() {
   const handleChangeEmail = handleChange(setInfo, info, 'email' );
   const handleChangePhone = handleChange(setInfo, info, 'phone');
   
-  const [institutions, setInstitutions] = useState([]);
+  const [institutions, setInstitutions] = useState([defaultInstitution]);
   const [institutionName, setInstitutionName] = useState('');
   const [institutionDate, setInstitutionDate] = useState('');
   const [institutionDiscipline, setInstitutionDiscipline] = useState('');
@@ -88,10 +88,6 @@ function App() {
         <h3><u>Education</u></h3>
         <ul>
           {educationItems}
-          {/* <li>
-              <div>{institution.discipline}</div>
-              <div><b>{institution.name}</b>: <i>{institution.end}</i></div>
-          </li> */}
         </ul>
       </div>
     </div>
