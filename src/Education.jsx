@@ -1,8 +1,6 @@
 import "./Form.css";
 let nextInstitutionId = 0;
 export default function Education({name, institutions, discipline, date, onAddName, onAddInstitution, onAddDiscipline, onAddDate}) {
-  console.log(institutions)
-  
   return (
     <>
       <form

@@ -52,32 +52,36 @@ function App() {
 
   const educationItems = institutions.map(institution => 
     <li key={institution.id}>
-      <div>{institution.discipline}</div>
+      <div><button id="dummyBox" onClick={() => 
+        setInstitutions(
+          institutions.filter(i => i.id !== institution.id)
+        )
+      }></button>{institution.discipline}</div>
       <div><b>{institution.name}</b>: <i>{institution.date}</i></div>
     </li>
   );
   return (
   <>
-      <div className="input content">
-        <Info 
-          info={info}
-          onChangeFirstName={handleChangeFirstName}
-          onChangeLastName={handleChangeLastName}
-          onChangeEmail={handleChangeEmail}
-          onChangePhone={handleChangePhone}
-        />
-        <Education 
-          name={institutionName}
-          institutions={institutions}
-          date={institutionDate}
-          discipline={institutionDiscipline}
-          onAddName={handleInstitutionName}
-          onAddInstitution={setInstitutions}
-          onAddDiscipline={handleInstitutionDiscipline}
-          onAddDate={handleInstitutionDate}
-        />
-        <Experience />
-      </div>
+    <div className="input content">
+      <Info 
+        info={info}
+        onChangeFirstName={handleChangeFirstName}
+        onChangeLastName={handleChangeLastName}
+        onChangeEmail={handleChangeEmail}
+        onChangePhone={handleChangePhone}
+      />
+      <Education 
+        name={institutionName}
+        institutions={institutions}
+        date={institutionDate}
+        discipline={institutionDiscipline}
+        onAddName={handleInstitutionName}
+        onAddInstitution={setInstitutions}
+        onAddDiscipline={handleInstitutionDiscipline}
+        onAddDate={handleInstitutionDate}
+      />
+      <Experience />
+    </div>
     <div  className="output content">
       <div className="personalInfo">
         <h2>{info.first} {info.last}</h2>

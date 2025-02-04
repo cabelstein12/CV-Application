@@ -19,3 +19,13 @@
 button {
   grid-column: 1/ 3;
 }
+
+li:hover::marker{
+  content: 'x ';
+}
+
+#dummyBox {
+  position: absolute;
+  left: 53%;
+  /* visibility: hidden; */
+}
