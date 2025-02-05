@@ -1,6 +1,7 @@
 import "./Form.css";
 let nextInstitutionId = 0;
 export default function Education({name, institutions, discipline, date, onAddName, onAddInstitution, onAddDiscipline, onAddDate}) {
+  console.log(institutions)
   return (
     <>
       <form
@@ -9,7 +10,8 @@ export default function Education({name, institutions, discipline, date, onAddNa
         name='edu-form'
         onSubmit={(e) => {
           e.preventDefault();
-          if(institutions[0].id == null){
+          console.log(institutions)
+          if(institutions.length == 1 && institutions[0].id == 'default'){
             institutions=[];
           }
           onAddInstitution([

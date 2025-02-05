@@ -18,7 +18,7 @@ function App() {
     name: "University of Baltimore", 
     discipline: 'Bachelor of Science in Molecular Biology', 
     date: "2016-04", 
-    id: null
+    id: 'default'
   }
   
   function handleChange(state, obj, prop){
