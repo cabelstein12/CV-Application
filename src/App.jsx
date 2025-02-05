@@ -52,12 +52,12 @@ function App() {
 
   const educationItems = institutions.map(institution => 
     <li key={institution.id}>
-      <div><button id="dummyBox" onClick={() => 
+      <span id="delete-span"><button id="deleteBtn" onClick={() => 
         setInstitutions(
           institutions.filter(i => i.id !== institution.id)
         )
-      }></button>{institution.discipline}</div>
-      <div><b>{institution.name}</b>: <i>{institution.date}</i></div>
+      }></button></span><span id="discipline-name">{institution.discipline}</span>
+      <div id="institution-info"><b>{institution.name}</b>: <i>{institution.date}</i></div>
     </li>
   );
   return (
