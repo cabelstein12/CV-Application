@@ -55,12 +55,14 @@ function App() {
   const [jobTitle, setJobTitle] = useState('');
   const [companyName, setCompanyName] = useState('');
   const [responsibilities, setResponsibilities] = useState('');
-  const [fromTo, setFromTo] = useState({from: "yyyy-mm", to: "yyyy-mm"});
+  const [startDate, setStartDate] = useState('');
+  const [endDate, setEndDate] = useState('');
+  const period = [startDate, endDate]
 
   const handleJobTitle = handleChange(setJobTitle);
   const handleCompanyName = handleChange(setCompanyName);
   const handleResponsibilities = handleChange(setResponsibilities);
-  const handleDates = handleChange(setFromTo);
+  const handleDates = [handleChange(setStartDate), handleChange(setEndDate)]
 
   const educationItems = institutions.map(institution => 
     <li key={institution.id}>
@@ -76,13 +78,13 @@ function App() {
   const experienceItems = experiences.map(experience => 
     <li key={experience.id}>
       <span className="delete-span"><button className="deleteBtn" onClick={() => setExperiences(
-        experiences.filter(e => e.id !== experiences.id)
+        experiences.filter(e => e.id !== experience.id)
       )
-      }></button></span><span id="experience-name"><b>{jobTitle}</b></span>
-      <div>{companyName} {fromTo}</div>
+      }></button></span><span id="experience-name"><b>{experience.jobTitle}</b> {experience.from} to {experience.to}</span>
+      <div>{experience.companyName} </div>
       <div>
         <ul>
-          {responsibilities}
+          {experience.responsibilities}
         </ul>
       </div>
 
@@ -112,8 +114,8 @@ function App() {
         title={jobTitle}
         xp={experiences}
         company={companyName}
-        roles={responsibilities}
-        dates={fromTo}
+        jobRoles={responsibilities}
+        dates={period}
         onAddXp={setExperiences}
         onChangeTitle={handleJobTitle}
         onChangeCompanyName={handleCompanyName}
