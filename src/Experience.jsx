@@ -14,6 +14,7 @@ export default function Experience({title, xp, company, jobRoles, dates, onAddXp
             ...xp,
             {id: nextXpId++, jobTitle: title, companyName: company, responsibilities: jobRoles, from: dates[0], to: dates[1]}
           ])
+          console.log(xp)
         }}
       >
         <h2>Experience</h2>

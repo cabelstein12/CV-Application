@@ -20,6 +20,13 @@ function App() {
     date: "2016-04", 
     id: 'default'
   }
+
+  const defaultXP = {
+    companyName: "Big Johns Woodworking",
+    from: "2002-02",
+    to: "2006-08",
+    responsibilities: ["Operated woodworking machinery, including table saws, planers, routers, and sanders, to cut and shape materials.", "Ensured precise joinery and finishing techniques to produce high-quality furniture and cabinetry."]
+  }
   
   function handleChange(state, obj, prop){
     if(obj && prop){
@@ -51,10 +58,10 @@ function App() {
   const handleInstitutionDiscipline = handleChange(setInstitutionDiscipline);
   const handleInstitutionDate = handleChange(setInstitutionDate);
 
-  const [experiences, setExperiences] = useState([]);
+  const [experiences, setExperiences] = useState([defaultXP]);
   const [jobTitle, setJobTitle] = useState('');
   const [companyName, setCompanyName] = useState('');
-  const [responsibilities, setResponsibilities] = useState('');
+  const [responsibilities, setResponsibilities] = useState({defaultXP});
   const [startDate, setStartDate] = useState('');
   const [endDate, setEndDate] = useState('');
   const period = [startDate, endDate]
@@ -74,7 +81,6 @@ function App() {
       <div id="institution-info"><b>{institution.name}</b>: <i>{institution.date}</i></div>
     </li>
   );
-
   const experienceItems = experiences.map(experience => 
     <li key={experience.id}>
       <span className="delete-span"><button className="deleteBtn" onClick={() => setExperiences(
