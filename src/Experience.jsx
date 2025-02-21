@@ -2,7 +2,7 @@ import "./Form.css";
 import "./Card.css"
 
 let nextXpId = 0;
-export default function Experience({title, xp, company, jobRoles, dates, onAddXp, onChangeTitle, onChangeCompanyName, onChangeResponsibilities, onChangeDates}) {
+export default function Experience({title, xp, company, jobResponsibilities, dates, onAddXp, onChangeTitle, onChangeCompanyName, onChangeJobResponsibilities, onChangeDates}) {
   return (
     <>
       <form
@@ -10,9 +10,12 @@ export default function Experience({title, xp, company, jobRoles, dates, onAddXp
         className="form-section content"
         onSubmit={(e) => {
           e.preventDefault();
+          if(xp[0].id == 'default'){
+            xp=[];
+          }
           onAddXp([
             ...xp,
-            {id: nextXpId++, jobTitle: title, companyName: company, responsibilities: jobRoles, from: dates[0], to: dates[1]}
+            {id: nextXpId++, jobTitle: title, companyName: company, responsibilities: jobResponsibilities, from: dates[0], to: dates[1]}
           ])
           console.log(xp)
         }}
@@ -26,7 +29,7 @@ export default function Experience({title, xp, company, jobRoles, dates, onAddXp
         <input type="text" value={company} onChange={onChangeCompanyName}/>
 
         <label htmlFor="job-responsibilities"> Responsibilities </label>
-        <textarea type="text" rows="4" cols="30" value={jobRoles} onChange={onChangeResponsibilities}/>
+        <textarea type="text" rows="4" cols="30" value={jobResponsibilities} onChange={onChangeJobResponsibilities}/>
 
         <label htmlFor="job-start">Start Date</label>
         <input type="month" value={dates[0]} onChange={onChangeDates[0]}/>

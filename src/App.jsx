@@ -7,12 +7,23 @@ import Info from "./Info.jsx";
 import Experience from "./Experience.jsx";
 
 function App() {
-  const [info, setInfo] = useState({
+  let visible = false
+  function toggleButtons(){
+    
+    if(!visible){
+      document.querySelectorAll('.edit-button').forEach(e => e.style.display = '');
+      visible = true;
+    }else{
+      document.querySelectorAll('.edit-button').forEach(e => e.style.display = 'none');
+      visible = false;
+    }
+  }
+  const defaultPerson = {
     first: "John", 
     last: 'Doe', 
     email: "jdoe@email.com", 
     phone: "(123)456-1234"
-  });
+  }
   
   const defaultInstitution = {
     name: "University of Baltimore", 
@@ -20,12 +31,14 @@ function App() {
     date: "2016-04", 
     id: 'default'
   }
-
+  
   const defaultXP = {
-    companyName: "Big Johns Woodworking",
+    companyName: "Subway",
+    jobTitle: "Sandwich Artist",
     from: "2002-02",
     to: "2006-08",
-    responsibilities: ["Operated woodworking machinery, including table saws, planers, routers, and sanders, to cut and shape materials.", "Ensured precise joinery and finishing techniques to produce high-quality furniture and cabinetry."]
+    responsibilities: "Masterfully craft foot-long sandwiches to customer specification. Ensured highest customer service.",
+    id: 'default'
   }
   
   function handleChange(state, obj, prop){
@@ -43,6 +56,8 @@ function App() {
       }
     }
   }
+  
+  const [info, setInfo] = useState(defaultPerson);
 
   const handleChangeFirstName = handleChange(setInfo, info, 'first');
   const handleChangeLastName = handleChange(setInfo, info, 'last');
@@ -61,7 +76,7 @@ function App() {
   const [experiences, setExperiences] = useState([defaultXP]);
   const [jobTitle, setJobTitle] = useState('');
   const [companyName, setCompanyName] = useState('');
-  const [responsibilities, setResponsibilities] = useState({defaultXP});
+  const [responsibilities, setResponsibilities] = useState('');
   const [startDate, setStartDate] = useState('');
   const [endDate, setEndDate] = useState('');
   const period = [startDate, endDate]
@@ -73,22 +88,47 @@ function App() {
 
   const educationItems = institutions.map(institution => 
     <li key={institution.id}>
-      <span className="delete-span"><button className="deleteBtn" onClick={() => 
-        setInstitutions(
+      <span className="delete-span">
+        <button 
+          className="edit-button delete-button" 
+          id="delete-institution-button" 
+          onClick={() => setInstitutions(
           institutions.filter(i => i.id !== institution.id)
-        )
-      }></button></span><span id="discipline-name">{institution.discipline}</span>
-      <div id="institution-info"><b>{institution.name}</b>: <i>{institution.date}</i></div>
+          )}
+        ></button>
+        <button
+          className="edit-button modify-button"
+          id="edit-institution-button"
+          onClick={()=>{}}
+        ></button>
+      </span>
+      <span id="institution-info">
+        <b>{institution.name}</b> - <i>{institution.date}</i>
+      </span>
+      <div id="discipline-name">{institution.discipline}</div>
     </li>
   );
   const experienceItems = experiences.map(experience => 
     <li key={experience.id}>
-      <span className="delete-span"><button className="deleteBtn" onClick={() => setExperiences(
-        experiences.filter(e => e.id !== experience.id)
-      )
-      }></button></span><span id="experience-name"><b>{experience.jobTitle}</b> {experience.from} to {experience.to}</span>
-      <div>{experience.companyName} </div>
-      <div>
+      <span className="delete-span">
+        <button 
+          className="edit-button delete-button" 
+          id="delete-xp-button" 
+          onClick={() => setExperiences(
+            experiences.filter(e => e.id !== experience.id)
+          )}
+        ></button>
+        <button
+          className="edit-button modify-button"
+          id="edit-institution-button"
+          onClick={()=>{}}
+        ></button>
+      </span>
+      <span id="experience-name-dates">
+        <b>{experience.jobTitle}</b> - <i>{experience.from}</i> to <i>{experience.to}</i>
+      </span>
+      <div id="experience-company">{experience.companyName} </div>
+      <div id="experience-responsibilities">
         <ul>
           {experience.responsibilities}
         </ul>
@@ -120,12 +160,12 @@ function App() {
         title={jobTitle}
         xp={experiences}
         company={companyName}
-        jobRoles={responsibilities}
         dates={period}
+        jobResponsibilities={responsibilities}
         onAddXp={setExperiences}
         onChangeTitle={handleJobTitle}
         onChangeCompanyName={handleCompanyName}
-        onChangeResponsibilities={handleResponsibilities}
+        onChangeJobResponsibilities={handleResponsibilities}
         onChangeDates={handleDates}
       />
     </div>
@@ -148,7 +188,10 @@ function App() {
         </ul>
       </div>
     </div>
-
+    <button 
+      id="toggle-edit" 
+      onClick={toggleButtons}
+    >Edit CV</button>
   </>
   );
 }

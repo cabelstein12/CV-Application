@@ -30,17 +30,21 @@ li{
   grid-template-columns: 1em 1fr;
 }
 
-#institution-info {
+#discipline-name {
   grid-column: 1 / 3;
 }
 
-.deleteBtn {
+.edit-button {
   padding: 6px;
   background-color: #f9f9f9;
   color: black;
   padding: 0px 3px 1px 3px;
 }
 
-.deleteBtn:after{
-  content: "\00d7";
+.delete-button:after{
+  content: "✄";
+}
+
+.modify-button:after{
+  content: ' ✐ ';
 }
