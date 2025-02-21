@@ -11,7 +11,7 @@ function App() {
   function toggleButtons(){
     
     if(!visible){
-      document.querySelectorAll('.edit-button').forEach(e => e.style.display = '');
+      document.querySelectorAll('.edit-button').forEach(e => e.style.display = 'inline');
       visible = true;
     }else{
       document.querySelectorAll('.edit-button').forEach(e => e.style.display = 'none');
@@ -88,7 +88,7 @@ function App() {
 
   const educationItems = institutions.map(institution => 
     <li key={institution.id}>
-      <span className="delete-span">
+      <span className="edit-buttons">
         <button 
           className="edit-button delete-button" 
           id="delete-institution-button" 
@@ -110,7 +110,7 @@ function App() {
   );
   const experienceItems = experiences.map(experience => 
     <li key={experience.id}>
-      <span className="delete-span">
+      <div className="edit-buttons">
         <button 
           className="edit-button delete-button" 
           id="delete-xp-button" 
@@ -123,7 +123,7 @@ function App() {
           id="edit-institution-button"
           onClick={()=>{}}
         ></button>
-      </span>
+      </div>
       <span id="experience-name-dates">
         <b>{experience.jobTitle}</b> - <i>{experience.from}</i> to <i>{experience.to}</i>
       </span>

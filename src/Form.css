@@ -35,10 +35,11 @@ li{
 }
 
 .edit-button {
-  padding: 6px;
   background-color: #f9f9f9;
   color: black;
   padding: 0px 3px 1px 3px;
+  margin: 2px;
+  display: none;
 }
 
 .delete-button:after{
@@ -47,4 +48,8 @@ li{
 
 .modify-button:after{
   content: ' ✐ ';
+}
+
+.edit-buttons{
+  width: max-content;
 }
