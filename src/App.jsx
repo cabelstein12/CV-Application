@@ -25,12 +25,20 @@ function App() {
     phone: "(123)456-1234"
   }
   
-  const defaultInstitution = {
+  const defaultInstitution = [{
     name: "University of Baltimore", 
     discipline: 'Bachelor of Science in Molecular Biology', 
     date: "2016-04", 
-    id: 'default'
-  }
+    // id: 'default',
+    id: 0,
+    },
+    {
+      name: "University of Alberta",
+      discipline: "Bachelor of Arts",
+      date: "2012-07",
+      id: 1,
+    }
+  ]
   
   const defaultXP = {
     companyName: "Subway",
@@ -38,7 +46,7 @@ function App() {
     from: "2002-02",
     to: "2006-08",
     responsibilities: "Masterfully craft foot-long sandwiches to customer specification. Ensured highest customer service.",
-    id: 'default'
+    id: 0
   }
   
   function handleChange(state, obj, prop){
@@ -64,14 +72,17 @@ function App() {
   const handleChangeEmail = handleChange(setInfo, info, 'email' );
   const handleChangePhone = handleChange(setInfo, info, 'phone');
   
-  const [institutions, setInstitutions] = useState([defaultInstitution]);
+  const [institutions, setInstitutions] = useState(defaultInstitution);
   const [institutionName, setInstitutionName] = useState('');
   const [institutionDate, setInstitutionDate] = useState('');
   const [institutionDiscipline, setInstitutionDiscipline] = useState('');
+  const [modifyInstitution, setModifyInstitution] = useState(false);
+  const [modifyIndex, setModifyIndex] = useState(0)
 
   const handleInstitutionName = handleChange(setInstitutionName);
   const handleInstitutionDiscipline = handleChange(setInstitutionDiscipline);
   const handleInstitutionDate = handleChange(setInstitutionDate);
+  const handleModifyIndex = function(val){setModifyIndex(val)}
 
   const [experiences, setExperiences] = useState([defaultXP]);
   const [jobTitle, setJobTitle] = useState('');
@@ -79,7 +90,7 @@ function App() {
   const [responsibilities, setResponsibilities] = useState('');
   const [startDate, setStartDate] = useState('');
   const [endDate, setEndDate] = useState('');
-  const period = [startDate, endDate]
+  const period = [startDate, endDate];
 
   const handleJobTitle = handleChange(setJobTitle);
   const handleCompanyName = handleChange(setCompanyName);
@@ -99,7 +110,18 @@ function App() {
         <button
           className="edit-button modify-button"
           id="edit-institution-button"
-          onClick={()=>{}}
+          onClick={() => {
+            let inst = institutions.filter(e => e.id == institution.id);
+            inst = inst[0];
+            console.log(inst)
+            setInstitutionName(inst.name)
+            setInstitutionDiscipline(inst.discipline)
+            setInstitutionDate(inst.date)
+            setModifyInstitution(true)
+            handleModifyIndex(inst.id)
+            console.log(institutions, modifyInstitution)
+            }   
+          }
         ></button>
       </span>
       <span id="institution-info">
@@ -154,7 +176,10 @@ function App() {
         onAddName={handleInstitutionName}
         onAddInstitution={setInstitutions}
         onAddDiscipline={handleInstitutionDiscipline}
+        onModifyInstitution={setModifyInstitution}
         onAddDate={handleInstitutionDate}
+        modifying={modifyInstitution}
+        modIndex={modifyIndex}
       />
       <Experience 
         title={jobTitle}

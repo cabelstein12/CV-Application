@@ -1,6 +1,6 @@
 import "./Form.css";
-let nextInstitutionId = 0;
-export default function Education({name, institutions, discipline, date, onAddName, onAddInstitution, onAddDiscipline, onAddDate}) {
+let nextInstitutionId = 2;
+export default function Education({name, institutions, discipline, date, modifying, modIndex, onModifyInstitution, onAddName, onAddInstitution, onAddDiscipline, onAddDate}) {
   return (
     <>
       <form
@@ -12,10 +12,24 @@ export default function Education({name, institutions, discipline, date, onAddNa
           if(institutions.length == 1 && institutions[0].id == 'default'){
             institutions=[];
           }
-          onAddInstitution([
-            ...institutions,
-            {id: nextInstitutionId++, name: name, discipline: discipline, date: date}
-          ]);
+          console.log(institutions)
+          if(modifying){
+            const updatedInstitution = institutions.map((edu, ind) => {
+              console.log(edu,ind)
+              if(ind === modIndex){
+                  return edu = {id: modIndex, name: name, discipline: discipline, date: date}
+              } else { return edu } 
+            });
+            onModifyInstitution(false)
+            onAddInstitution(updatedInstitution)
+          }else{
+            onAddInstitution([
+              ...institutions,
+              {id: nextInstitutionId++, name: name, discipline: discipline, date: date}
+            ]);
+          }
+
+          
         }
       }
       >
@@ -28,7 +42,7 @@ export default function Education({name, institutions, discipline, date, onAddNa
         <label htmlFor="study-date-end"> Completion </label>
         <input type="month" id="endDate" value={date} onChange={onAddDate} /> 
 
-        <button type="submit">Add Another Institution</button>
+        <button type="submit">{modifying ? ("Modify Institution") : ("Add Another Institution")}</button>
       </form>
     </>
   );

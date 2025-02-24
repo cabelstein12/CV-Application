@@ -27,7 +27,7 @@ ul {
 
 li{
   display: grid;
-  grid-template-columns: 1em 1fr;
+  grid-template-columns: 4em 1fr;
 }
 
 #discipline-name {
@@ -39,7 +39,7 @@ li{
   color: black;
   padding: 0px 3px 1px 3px;
   margin: 2px;
-  display: none;
+  /* display: none; */
 }
 
 .delete-button:after{
