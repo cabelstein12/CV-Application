@@ -78,6 +78,11 @@ function App() {
   const [institutionDiscipline, setInstitutionDiscipline] = useState('');
   const [modifyInstitution, setModifyInstitution] = useState(false);
   const [modifyIndex, setModifyIndex] = useState(0)
+  function clearInstitutionForm(){
+    setInstitutionDate('');
+    setInstitutionName('');
+    setInstitutionDiscipline('');
+  }
 
   const handleInstitutionName = handleChange(setInstitutionName);
   const handleInstitutionDiscipline = handleChange(setInstitutionDiscipline);
@@ -180,6 +185,7 @@ function App() {
         onAddDate={handleInstitutionDate}
         modifying={modifyInstitution}
         modIndex={modifyIndex}
+        clear={clearInstitutionForm}
       />
       <Experience 
         title={jobTitle}

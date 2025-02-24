@@ -1,6 +1,6 @@
 import "./Form.css";
 let nextInstitutionId = 2;
-export default function Education({name, institutions, discipline, date, modifying, modIndex, onModifyInstitution, onAddName, onAddInstitution, onAddDiscipline, onAddDate}) {
+export default function Education({name, institutions, discipline, date, modifying, modIndex, onModifyInstitution, onAddName, onAddInstitution, onAddDiscipline, onAddDate, clear}) {
   return (
     <>
       <form
@@ -28,8 +28,7 @@ export default function Education({name, institutions, discipline, date, modifyi
               {id: nextInstitutionId++, name: name, discipline: discipline, date: date}
             ]);
           }
-
-          
+          clear();
         }
       }
       >
