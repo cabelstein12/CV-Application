@@ -14,9 +14,8 @@ export default function Education({name, institutions, discipline, date, modifyi
           }
           console.log(institutions)
           if(modifying){
-            const updatedInstitution = institutions.map((edu, ind) => {
-              console.log(edu,ind)
-              if(ind === modIndex){
+            const updatedInstitution = institutions.map((edu, index) => {
+              if(index === modIndex){
                   return edu = {id: modIndex, name: name, discipline: discipline, date: date}
               } else { return edu } 
             });

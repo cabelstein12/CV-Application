@@ -77,17 +77,17 @@ function App() {
   const [institutionDate, setInstitutionDate] = useState('');
   const [institutionDiscipline, setInstitutionDiscipline] = useState('');
   const [modifyInstitution, setModifyInstitution] = useState(false);
-  const [modifyIndex, setModifyIndex] = useState(0)
-  function clearInstitutionForm(){
+  const [modifyInstitutionIndex, setModifyInstitutionIndex] = useState(0)
+
+  const clearEducationForm = () => {
     setInstitutionDate('');
     setInstitutionName('');
     setInstitutionDiscipline('');
   }
-
   const handleInstitutionName = handleChange(setInstitutionName);
   const handleInstitutionDiscipline = handleChange(setInstitutionDiscipline);
   const handleInstitutionDate = handleChange(setInstitutionDate);
-  const handleModifyIndex = function(val){setModifyIndex(val)}
+  const handleModifyInstitutionIndex = function(val){setModifyInstitutionIndex(val)}
 
   const [experiences, setExperiences] = useState([defaultXP]);
   const [jobTitle, setJobTitle] = useState('');
@@ -96,11 +96,22 @@ function App() {
   const [startDate, setStartDate] = useState('');
   const [endDate, setEndDate] = useState('');
   const period = [startDate, endDate];
+  const [modifyExperience, setModifyExperience] = useState(false);
+  const [modifyExperienceIndex, setModifyExperienceIndex] = useState(0);
+  const handleModifyExperienceIndex = function(val){setModifyExperienceIndex(val)}
 
   const handleJobTitle = handleChange(setJobTitle);
   const handleCompanyName = handleChange(setCompanyName);
   const handleResponsibilities = handleChange(setResponsibilities);
   const handleDates = [handleChange(setStartDate), handleChange(setEndDate)]
+
+  const clearExperienceForm = () => {
+    setJobTitle('');
+    setCompanyName('');
+    setResponsibilities('');
+    setStartDate('');
+    setEndDate('');
+  }
 
   const educationItems = institutions.map(institution => 
     <li key={institution.id}>
@@ -118,13 +129,11 @@ function App() {
           onClick={() => {
             let inst = institutions.filter(e => e.id == institution.id);
             inst = inst[0];
-            console.log(inst)
             setInstitutionName(inst.name)
             setInstitutionDiscipline(inst.discipline)
             setInstitutionDate(inst.date)
             setModifyInstitution(true)
-            handleModifyIndex(inst.id)
-            console.log(institutions, modifyInstitution)
+            handleModifyInstitutionIndex(inst.id)
             }   
           }
         ></button>
@@ -147,8 +156,19 @@ function App() {
         ></button>
         <button
           className="edit-button modify-button"
-          id="edit-institution-button"
-          onClick={()=>{}}
+          id="edit-experience-button"
+          onClick={()=>{
+            let xp = experiences.filter(e => e.id == experience.id)
+            xp = xp[0];
+            console.log(xp)
+            setJobTitle(xp.jobTitle)
+            setResponsibilities(xp.responsibilities)
+            setCompanyName(xp.companyName)
+            setStartDate(xp.from)
+            setEndDate(xp.to);
+            setModifyExperience(true)
+            handleModifyExperienceIndex(xp.id)
+          }}
         ></button>
       </div>
       <span id="experience-name-dates">
@@ -184,8 +204,8 @@ function App() {
         onModifyInstitution={setModifyInstitution}
         onAddDate={handleInstitutionDate}
         modifying={modifyInstitution}
-        modIndex={modifyIndex}
-        clear={clearInstitutionForm}
+        modIndex={modifyInstitutionIndex}
+        clear={clearEducationForm}
       />
       <Experience 
         title={jobTitle}
@@ -198,6 +218,10 @@ function App() {
         onChangeCompanyName={handleCompanyName}
         onChangeJobResponsibilities={handleResponsibilities}
         onChangeDates={handleDates}
+        modifying={modifyExperience}
+        onModifyExperience={setModifyExperience}
+        modIndex={modifyExperienceIndex}
+        clear={clearExperienceForm}
       />
     </div>
     <div  className="output content">

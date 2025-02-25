@@ -1,8 +1,9 @@
 import "./Form.css";
 import "./Card.css"
 
-let nextXpId = 0;
-export default function Experience({title, xp, company, jobResponsibilities, dates, onAddXp, onChangeTitle, onChangeCompanyName, onChangeJobResponsibilities, onChangeDates}) {
+let nextXpId = 1;
+export default function Experience({title, xp, company, jobResponsibilities, dates, onAddXp, onChangeTitle, onChangeCompanyName, onChangeJobResponsibilities, onChangeDates, modifying, modIndex, onModifyExperience, clear}) {
+  console.log(modIndex, xp)
   return (
     <>
       <form
@@ -13,11 +14,23 @@ export default function Experience({title, xp, company, jobResponsibilities, dat
           if(xp[0].id == 'default'){
             xp=[];
           }
-          onAddXp([
-            ...xp,
-            {id: nextXpId++, jobTitle: title, companyName: company, responsibilities: jobResponsibilities, from: dates[0], to: dates[1]}
-          ])
-          console.log(xp)
+          if(modifying){
+            const updatedXp = xp.map((exp, index) => {
+              if(index == modIndex){
+                return exp = {id: modIndex, jobTitle: title, companyName: company, responsibilities: jobResponsibilities, from: dates[0], to: dates[1]}
+              }else{
+                return exp
+              }
+            })
+            onAddXp(updatedXp)
+            onModifyExperience(false)
+          }else{
+            onAddXp([
+              ...xp,
+              {id: nextXpId++, jobTitle: title, companyName: company, responsibilities: jobResponsibilities, from: dates[0], to: dates[1]}
+            ])
+          }
+            clear();
         }}
       >
         <h2>Experience</h2>
@@ -43,14 +56,14 @@ export default function Experience({title, xp, company, jobResponsibilities, dat
             const endDate = document.getElementById("end-date-text");
             if(!endDate.disabled){
               endDate.disabled = true;
-              dates[1] = "current"
+              dates[1] = "Present"
             }else{
               endDate.disabled = false;
             }
           }}
           />
 
-        <button type="submit">Add More Experience</button>
+        <button type="submit">{!modifying ? ("Add more Experience") : ("Update Experience")}</button>
       </form>
     </>
   );
