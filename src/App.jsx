@@ -114,7 +114,7 @@ function App() {
   }
 
   const educationItems = institutions.map(institution => 
-    <li key={institution.id}>
+    <li key={institution.id} className="education-list-item">
       <span className="edit-buttons">
         <button 
           className="edit-button delete-button" 
@@ -138,14 +138,24 @@ function App() {
           }
         ></button>
       </span>
-      <span id="institution-info">
-        <b>{institution.name}</b> - <i>{institution.date}</i>
-      </span>
+      <div id="institution-name">
+        <b>{institution.name}</b>
+      </div>
+      <div id="institution-date">
+        <i>{institution.date}</i>
+      </div>
       <div id="discipline-name">{institution.discipline}</div>
     </li>
   );
   const experienceItems = experiences.map(experience => 
-    <li key={experience.id}>
+    <li key={experience.id} className="experiences-list-item">
+      <div id="experience-company"><b>{experience.companyName}</b> </div>
+      <div id="experience-name-dates">
+        <b>{experience.jobTitle}</b> 
+      </div>
+      <div id="experiences-dates">
+        <i>{experience.from}</i> to <i>{experience.to}</i>
+      </div>
       <div className="edit-buttons">
         <button 
           className="edit-button delete-button" 
@@ -171,10 +181,6 @@ function App() {
           }}
         ></button>
       </div>
-      <span id="experience-name-dates">
-        <b>{experience.jobTitle}</b> - <i>{experience.from}</i> to <i>{experience.to}</i>
-      </span>
-      <div id="experience-company">{experience.companyName} </div>
       <div id="experience-responsibilities">
         <ul>
           {experience.responsibilities}

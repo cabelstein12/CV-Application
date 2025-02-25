@@ -22,18 +22,13 @@ button {
 
 ul {
   list-style-type: none;
-  padding: 0px 40px
+  padding: 0px;
 }
 
 li{
   display: grid;
-  grid-template-columns: 4em 1fr;
+  grid-template-columns: 2fr 5fr 2fr;
 }
-
-#discipline-name {
-  grid-column: 1 / 3;
-}
-
 .edit-button {
   background-color: #f9f9f9;
   color: black;
@@ -52,4 +47,32 @@ li{
 
 .edit-buttons{
   width: max-content;
+}
+
+#discipline-name {
+  grid-column: 1 / 3;
+}
+
+#experience-company,
+#institution-name{
+  grid-column: 1;
+  grid-row: 1;
+}
+#institution-name{
+  padding: 5%;
+}
+#experience-responsibilities,
+#discipline-name {
+  grid-column: 2;
+}
+#discipline-name{
+  grid-row: 1;
+}
+#experience-responsibilites{
+  grid-row: 2;
+}
+#experience-dates,
+#institution-date{
+  grid-column: 3;
+  grid-row: 1;
 }

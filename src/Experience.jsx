@@ -38,15 +38,17 @@ export default function Experience({title, xp, company, jobResponsibilities, dat
         <input type="text" value={title} onChange={onChangeTitle}/>
 
         <label htmlFor="job-company"> Company </label>
-        <input type="text" value={company} onChange={onChangeCompanyName}/>
+        <input type="text" id="job-company" value={company} onChange={onChangeCompanyName}/>
 
         <label htmlFor="job-responsibilities"> Responsibilities </label>
-        <textarea type="text" rows="4" cols="30" value={jobResponsibilities} onChange={onChangeJobResponsibilities}/>
+        <textarea type="text" id="job-responsibilities" rows="4" cols="30" value={jobResponsibilities} onChange={onChangeJobResponsibilities}/>
 
-        <label htmlFor="job-start">Start Date</label>
-        <input type="month" value={dates[0]} onChange={onChangeDates[0]}/>
-        <label htmlFor="job-end">End Date</label>
-        <input id="end-date-text" type="month" value={dates[1]} onChange={onChangeDates[1]}/>
+        <label htmlFor="job-start">Start Date
+          <input type="month" value={dates[0]} onChange={onChangeDates[0]}/>
+        </label>
+        <label htmlFor="job-end">End Date
+          <input id="end-date-text" type="month" value={dates[1]} onChange={onChangeDates[1]}/>
+        </label>
         <span> Present </span>
         <input
           id="end-date-checkbox"

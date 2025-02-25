@@ -32,14 +32,15 @@ export default function Education({name, institutions, discipline, date, modifyi
       }
       >
         <h2>Education</h2>
-        <label htmlFor="school-name"> Institution </label>
-        <input type="text" id="name" value={name} onChange={onAddName} minLength={7} />
-        <label htmlFor="study-type"> Field of Study </label>
-        <input type="text" id="discipline" value={discipline} onChange={onAddDiscipline} minLength={7} />
-        
-        <label htmlFor="study-date-end"> Completion </label>
-        <input type="month" id="endDate" value={date} onChange={onAddDate} /> 
-
+        <label htmlFor="school-name"> Institution 
+          <input type="text" id="name" value={name} onChange={onAddName} minLength={7} />
+        </label>
+        <label htmlFor="study-type"> Field of Study 
+          <input type="text" id="discipline" value={discipline} onChange={onAddDiscipline} minLength={7} />
+        </label>
+        <label htmlFor="study-date-end"> Completion 
+          <input type="month" id="endDate" value={date} onChange={onAddDate} /> 
+        </label>
         <button type="submit">{modifying ? ("Modify Institution") : ("Add Another Institution")}</button>
       </form>
     </>
