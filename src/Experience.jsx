@@ -3,7 +3,6 @@ import "./Card.css"
 
 let nextXpId = 1;
 export default function Experience({title, xp, company, jobResponsibilities, dates, onAddXp, onChangeTitle, onChangeCompanyName, onChangeJobResponsibilities, onChangeDates, modifying, modIndex, onModifyExperience, clear}) {
-  console.log(modIndex, xp)
   return (
     <>
       <form
